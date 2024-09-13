@@ -82,20 +82,16 @@ app.put("/product/edit/:id", (req, res) => {
   });
 });
 
+// HTTP Delete method ในงานนี้ ไม่ได้หายไปจริงๆ
 app.delete("/products/:id", (req, res) => {
   const productId = +req.params.id;
-
   const hasFound = products.find((product) => product.id === productId);
 
   if (!hasFound) {
-    return res.status(404).json({
-      message: `Product ${productId} not found`,
+   return res.status(404).json({
+     message: `Product ${productId} not found`,
     });
   }
-
-  products = products.filter((product) => {
-    return productId !== product.id;
-  });
 
   return res.json({
     message: `Product ${productId} has been deleted.`,
